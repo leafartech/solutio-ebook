@@ -140,7 +140,7 @@ export function Form({ utm_campaign, utm_content, utm_medium, utm_source, utm_te
                         </div>
                     ) : (
                         <div className="h-[356px] sm:h-[576px] flex items-center text-center">
-                            <p className="text-center text-zinc-700 text-lg font-medium">{message}</p>
+                            <p className="text-center text-zinc-700 text-xl font-medium">{message}</p>
                         </div>
                     )}
 
