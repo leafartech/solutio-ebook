@@ -111,7 +111,7 @@ export function Form({ utm_campaign, utm_content, utm_medium, utm_source, utm_te
                                 <input onChange={(e) => handleChange('name', e.target.value)} value={data.name} className="text-black font-medium outline-none rounded-md py-2 px-3 bg-zinc-200" type="text" id="name" name="name" placeholder="Insira seu nome" min={2} required />
                             </div>
                             <div className="flex flex-col gap-1">
-                                <input onChange={(e) => handleChange('email', e.target.value)} value={data.email} className="text-black font-medium outline-none rounded-md py-2 px-3 bg-zinc-200" type="text" id="email" name="email" placeholder="Insira seu melhor e-mail" required />
+                                <input onChange={(e) => handleChange('email', e.target.value)} value={data.email} className="text-black font-medium outline-none rounded-md py-2 px-3 bg-zinc-200" type="text" id="email" name="email" placeholder="Insira seu melhor e-mail" required autoComplete="email" />
                             </div>
                             <div className="flex flex-col gap-1">
                                 <input onChange={(e) => handleChange('phone', e.target.value)} value={data.phone} className="text-black font-medium outline-none rounded-md py-2 px-3 bg-zinc-200" type="tel" id="tel" name="phone" maxLength={16} placeholder="WhatsApp: (00) 00000-0000" required />
