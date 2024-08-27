@@ -67,6 +67,38 @@ export function Form({ utm_campaign, utm_content, utm_medium, utm_source, utm_te
         e.preventDefault()
         let dataHlp = data
 
+        const formatedData = {
+            "codigoApi": "89CA8DE7B0",
+            "origemOportunidade": "Integração",
+            "lead": {
+                "nomeLead": data.name,
+                "telefoneLead": data.phone,
+                "emailLead": data.email,
+                "origemLead": "Página de captura",
+            },
+            "contato": {
+                "nomeContato": data.name,
+                "telefoneContato": data.phone,
+                "emailContato": data.email,
+                "codigoLead": null
+            },
+            "followups": [
+                {
+                    "textoFollowup": "Essa oportunidade foi criada a partir da API de integração da LeadFinder",
+                    "dataFollwup": null,
+                    "codigoOportunidade": null,
+                    "notificar": true
+                },
+                {
+                    "textoFollowup": "É possivel inserir followups com os historicos da oportunidade via API",
+                    "dataFollwup": null,
+                    "codigoOportunidade": null,
+                    "notificar": true
+                }
+            ],
+            "followup": null
+        }
+
         setData(dataHlp)
         setLoading(true)
 
@@ -76,19 +108,17 @@ export function Form({ utm_campaign, utm_content, utm_medium, utm_source, utm_te
         dataHlp['utm_source'] = window.location.href.split('?')[1]?.split("&")[2]?.split("=")[1] || 'AQUI'
         dataHlp['utm_term'] = window.location.href.split('?')[1]?.split("&")[3]?.split("=")[1] || 'AQUI'
 
-        await fetch("https://webhook.sellflux.com/webhook/v2/form/lead/7faa7ab718e8975c774d43ef3a2f047e?redirect_url=google.com", {
+        await fetch("https://api.leadfinder.com.br/integracao/v2/inserirOportunidade", {
             method: "POST",
             headers: {
                 "Accept": "application/json",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "F32300EDBAE823485E8132E084A0F0626AE1F3ED25B026C3980A7702C6EAFF30"
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(formatedData)
         }).then(async res => {
             setLoading(false)
-            setMessage('Muito bem! Estamos preparando seu E-Book!')
-            setTimeout(() => {
-                router.push('/docs/ebook.pdf')
-            }, 2000)
+            setMessage('Muito bem! Nossa equipe entrará em contato com você pelo WhatsApp!')
         }).catch(e => console.log(e))
     }
 
