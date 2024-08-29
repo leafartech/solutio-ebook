@@ -150,7 +150,7 @@ export function Form({ utm_campaign, utm_content, utm_medium, utm_source, utm_te
                                 <input onChange={(e) => handleChange('phone', e.target.value)} value={data.phone} className="text-black font-medium outline-none rounded-md py-2 px-3 bg-zinc-200" type="tel" id="tel" name="phone" maxLength={16} placeholder="WhatsApp: (00) 00000-0000" required />
                             </div>
                             <div className="flex flex-col gap-1">
-                                <input onChange={(e) => handleChange('cnpj', e.target.value)} value={data.cnpj} className="text-zinc-600 text-sm outline-none rounded-md py-2 px-3 bg-zinc-100" type="cnpj" name="cnpj" minLength={18} maxLength={18} placeholder="CNPJ" required />
+                                <input onChange={(e) => handleChange('cnpj', e.target.value)} value={data.cnpj} className="text-black font-medium outline-none rounded-md py-2 px-3 bg-zinc-200" type="cnpj" name="cnpj" minLength={18} maxLength={18} placeholder="CNPJ" required />
                                 <p className="text-xs text-zinc-500 translate-x-3 text-left">Para CNPJ, siga o formato: 00.000.000/0001-00</p>
                             </div>
                             <button className="w-full text-sm sm:text-base text-center flex items-center justify-center gap-2 px-6 py-2 font-semibold text-white bg-[#01b013] hover:bg-[#01b013de] transition rounded-full" type="submit">
