@@ -41,28 +41,36 @@ export function Form({ utm_campaign, utm_content, utm_medium, utm_source, utm_te
     const [message, setMessage] = useState<string>('')
     const router = useRouter()
 
+    function formatCNPJ(cnpj: string): string {
+        cnpj = cnpj.replace(/\D/g, '');
+    
+        cnpj = cnpj.replace(/^(\d{2})(\d)/, '$1.$2');
+        cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+        cnpj = cnpj.replace(/\.(\d{3})(\d)/, '.$1/$2');
+        cnpj = cnpj.replace(/(\d{4})(\d)/, '$1-$2');
+    
+        return cnpj;
+    }
+
+    function formatPhone(phone: string): string {
+        phone = phone.replace(/\D/g, '');
+    
+        phone = phone.replace(/^(\d{2})(\d)/, '($1) $2');
+        phone = phone.replace(/(\d{5})(\d)/, '$1-$2');
+    
+        return phone;
+    }
+    
     function handleChange(type: keyof typeof initialData, value: string) {
         let hlp = { ...data }
         if (type === 'phone') {
-            hlp[type] = formatPhoneNumber(value)
+            hlp[type] = formatPhone(value)
+        } else if (type === 'cnpj') {
+            hlp[type] = formatCNPJ(value);
         } else {
             hlp[type] = value
         }
         setData(hlp)
-    }
-
-    function formatPhoneNumber(value: string) {
-        if (value.length > data.phone.length) {
-            if (value.length <= 1) {
-                value = `(${value}`
-            } else if (value.length <= 3) {
-                value = `${value}) 9 `
-            } else if (value.length === 11) {
-                value = `${value}-`
-            }
-        }
-
-        return value
     }
 
     async function formSubmited(e: FormEvent) {
