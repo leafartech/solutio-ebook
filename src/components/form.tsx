@@ -40,6 +40,7 @@ export function Form({ utm_campaign, utm_content, utm_medium, utm_source, utm_te
     const [loading, setLoading] = useState<boolean>(false)
     const [message, setMessage] = useState<string>('')
     const router = useRouter()
+    const [cnpj, setCnpj] = useState<string>('')
 
     function formatCNPJ(cnpj: string): string {
         cnpj = cnpj.replace(/\D/g, '');
@@ -67,6 +68,7 @@ export function Form({ utm_campaign, utm_content, utm_medium, utm_source, utm_te
             hlp[type] = formatPhone(value)
         } else if (type === 'cnpj') {
             hlp[type] = formatCNPJ(value);
+            setCnpj(value)
         } else {
             hlp[type] = value
         }
@@ -84,7 +86,7 @@ export function Form({ utm_campaign, utm_content, utm_medium, utm_source, utm_te
                 "nomeLead": data.name,
                 "telefoneLead": data.phone,
                 "emailLead": data.email,
-                "cnpjLead": data.cnpj,
+                "cnpjLead": cnpj,
                 "origemLead": "Página de captura",
             },
             "contato": {
