@@ -79,6 +79,8 @@ export function Form({ utm_campaign, utm_content, utm_medium, utm_source, utm_te
         e.preventDefault()
         let dataHlp = data
 
+        let newCnpj = cnpj.replace('.', '').replace('.', '').replace('/', '').replace('-', '')
+
         const formatedData = {
             "codigoApi": "6AEA03CD46",
             "origemOportunidade": "Integração",
@@ -86,7 +88,7 @@ export function Form({ utm_campaign, utm_content, utm_medium, utm_source, utm_te
                 "nomeLead": data.name,
                 "telefoneLead": data.phone,
                 "emailLead": data.email,
-                "cnpjLead": cnpj,
+                "cnpjLead": newCnpj,
                 "origemLead": "Página de captura",
             },
             "contato": {
